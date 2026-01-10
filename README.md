@@ -15,10 +15,6 @@ To create a comprehensive, data-driven tourism platform that helps visitors opti
 - Smart itinerary suggestions
 - Aspect-Based Sentiment Analysis for Sri Lanka Tourism Reviews
 
-
-
----
-
 ## System Architecture
 
 ### Three-Component Architecture
@@ -59,79 +55,75 @@ To create a comprehensive, data-driven tourism platform that helps visitors opti
 
 ### Component 1: Crowd Analysis (IT22255242)
 
-**Developer:** Buddhima P.K.A.K  
-**Technology:** Machine Learning - Linear Regression  
-**API Port:** 8001
+Developer: Buddhima P.K.A.K  
+Technology: Machine Learning - Linear Regression  
+API Port: 8001
 
-**Purpose:**
+Purpose:
 Predicts crowd levels at tourist attractions to help visitors plan optimal visit times.
 
-**Key Features:**
+Key Features:
 - Predict crowd levels (low/medium/high) for any date and time
 - Suggest best times to visit attractions
 - Historical analysis based on 13+ years of data
 - 94.43% prediction accuracy (R² score)
 
-**ML Model:**
+ML Model:
 - Type: Linear Regression with time-based features
 - Features: Month, quarter, year progress, lag features (1, 2, 3, 6, 12 months)
 - Performance: RMSE 350.20, MAE 256.14, MAPE 9.20%
 
-**API Endpoints:**
+API Endpoints:
 - `POST /api/predict` - Predict crowd level
 - `POST /api/best-time` - Get optimal visit times
 - `GET /api/metrics` - Model performance
 
-**Documentation:** [Component-1-Crowd-Analysis-IT22255242/README.md](Component-1-Crowd-Analysis-IT22255242/README.md)
-
----
+Documentation: [Component-1-Crowd-Analysis-IT22255242/README.md](Component-1-Crowd-Analysis-IT22255242/README.md)
 
 ### Component 2: Food Recommendation (IT22551870)
 
-**Developer:** Kumari M.S.S  
-**Technology:** Machine Learning - Collaborative Filtering  
-**API Port:** 8002
+Developer: Kumari M.S.S  
+Technology: Machine Learning - Collaborative Filtering  
+API Port: 8002
 
-**Purpose:**
+Purpose:
 Provides personalized food and recipe recommendations for tourists visiting Sri Lanka.
 
-**Key Features:**
+Key Features:
 - Personalized recipe recommendations
 - Rating prediction for user-recipe pairs
 - Popular recipe discovery
 - Sri Lanka-focused cuisine filtering
 - 94.2% prediction accuracy (within 1 star)
 
-**ML Model:**
+ML Model:
 - Type: Baseline Recommender with user/recipe bias
 - Formula: `prediction = global_mean + user_bias + recipe_bias`
 - Performance: RMSE 0.67, MAE 0.42
 
-**Data Sources:**
+Data Sources:
 - Food.com: 698,901 interactions, 178,265 recipes
 - Zomato: 1,247 Sri Lankan restaurants
 - Yelp: 856 Sri Lanka-relevant reviews
 
-**API Endpoints:**
+**API Endpoints:
 - `POST /api/recommend` - Get personalized recommendations
 - `POST /api/predict` - Predict rating
 - `GET /api/popular` - Get popular recipes
 - `GET /api/metrics` - Model performance
 
-**Documentation:** [Component-2-Food-Recommendation-IT22551870/README.md](Component-2-Food-Recommendation-IT22551870/README.md)
-
----
+Documentation: [Component-2-Food-Recommendation-IT22551870/README.md](Component-2-Food-Recommendation-IT22551870/README.md)
 
 ### Component 3: Festival & Weather (IT22921130)
 
-**Developer:** Malsha R.J.H  
-**Technology:** API Integration & Database Management  
-**API Port:** 8000
+Developer: Malsha R.J.H  
+Technology: API Integration & Database Management  
+API Port: 8000
 
-**Purpose:**
+Purpose:
 Provides real-time weather, festival calendar, and public holiday information.
 
-**Key Features:**
+Key Features:
 - Real-time weather data for Sri Lankan cities
 - 5-day weather forecasts
 - Curated festival database (10+ major festivals)
@@ -139,11 +131,11 @@ Provides real-time weather, festival calendar, and public holiday information.
 - Smart suggestions combining all data
 - Redis caching for performance
 
-**External APIs:**
+External APIs:
 - OpenWeatherMap: Current weather and forecasts
 - Calendarific: Sri Lankan public holidays
 
-**Database:**
+Database:
 - SQLite: Local festival database
 - 10 major Sri Lankan festivals seeded
 - CRUD operations for festival management
@@ -154,16 +146,13 @@ Provides real-time weather, festival calendar, and public holiday information.
 - `GET /api/holidays` - Public holidays
 - `GET /api/festivals` - Festival calendar
 - `GET /api/suggestions` - Smart recommendations
-
-**Documentation:** [Component-3-Festival-Weather-IT22921130/README.md](Component-3-Festival-Weather-IT22921130/README.md)
-
----
+Documentation: [Component-3-Festival-Weather-IT22921130/README.md](Component-3-Festival-Weather-IT22921130/README.md)
 
 ## How Components Work Together
 
 ### Integration Flow
 
-**Scenario 1: Planning a Trip to Kandy**
+Scenario 1: Planning a Trip to Kandy
 
 ```
 User opens app → Selects "Kandy" and date "August 15, 2026"
@@ -191,7 +180,7 @@ App displays:
 ✓ Recommended food: Kandy-style curry, kottu roti, etc.
 ```
 
-**Scenario 2: Food Discovery**
+Scenario 2: Food Discovery
 
 ```
 User wants lunch recommendations
@@ -234,38 +223,35 @@ Day 1: Outdoor attractions (sunny, medium crowd)
 Day 2: Indoor activities + Vesak celebrations (rainy, high crowd)
 Day 3: Major attractions (cloudy, low crowd - best day!)
 ```
-
----
-
 ## Mobile Application (Flutter)
 
 ### User Interface Screens
-
-**1. Home Dashboard**
+ 
+1. Home Dashboard
 - Current location weather
 - Nearby festivals
 - Personalized food suggestions
 - Quick crowd check
 
-**2. Attraction Planner**
+2. Attraction Planner
 - Select attraction and date
 - View crowd prediction
 - See best visit times
 - Check weather forecast
 
-**3. Food Discovery**
+3. Food Discovery
 - Personalized recommendations
 - Filter by cuisine, location
 - View predicted ratings
 - Restaurant information
 
-**4. Festival Calendar**
+4. Festival Calendar
 - Monthly festival view
 - Festival details
 - Location information
 - Cultural significance
 
-**5. Trip Planner**
+5. Trip Planner
 - Multi-day itinerary
 - Optimized schedule
 - Combined recommendations
@@ -304,37 +290,35 @@ User Selects Feature
         └→ Plan Visit
 ```
 
----
-
 ## Technical Architecture Framework (TAF)
 
 ### System Design Principles
 
-**1. Microservices Architecture**
+1. Microservices Architecture
 - Each component is independent
 - Separate APIs on different ports
 - Easy to scale and maintain
 - Can deploy independently
 
-**2. RESTful API Design**
+2. RESTful API Design
 - Standard HTTP methods
 - JSON request/response
 - Consistent error handling
 - Comprehensive documentation
 
-**3. Data-Driven Decisions**
+3. Data-Driven Decisions
 - ML models for predictions
 - Real-time data integration
 - Historical data analysis
 - Personalization algorithms
 
-**4. Performance Optimization**
+4. Performance Optimization
 - Redis caching (Component 3)
 - Model pre-loading on startup
 - Efficient database queries
 - Async operations
 
-**5. Scalability**
+5. Scalability
 - Stateless APIs
 - Horizontal scaling ready
 - Load balancing capable
@@ -342,30 +326,28 @@ User Selects Feature
 
 ### Technology Stack
 
-**Backend:**
+Backend:
 - Python 3.8+
 - FastAPI (web framework)
 - Uvicorn (ASGI server)
 - SQLAlchemy (ORM)
 - Redis (caching)
 
-**Machine Learning:**
+Machine Learning:
 - Scikit-learn (ML models)
 - Pandas (data processing)
 - NumPy (numerical computing)
 - Joblib (model persistence)
 
-**Frontend (Planned):**
+Frontend (Planned):
 - Flutter (mobile framework)
 - Dart (programming language)
 - HTTP package (API calls)
 - State management (Provider/Riverpod)
 
-**External Services:**
+External Services:
 - OpenWeatherMap API
 - Calendarific API
-
----
 
 ## Project Structure
 
@@ -409,8 +391,6 @@ Smart TOURISM/
 └── README.md                     # This file
 ```
 
----
-
 ## Getting Started
 
 ### Prerequisites
@@ -422,12 +402,12 @@ Smart TOURISM/
 
 ### Quick Start - All Components
 
-**1. Clone or Navigate to Project**
+1. Clone or Navigate to Project
 ```bash
 cd "Smart TOURISM"
 ```
 
-**2. Start Component 1 (Crowd Analysis)**
+2. Start Component 1 (Crowd Analysis)
 ```bash
 cd Component-1-Crowd-Analysis-IT22255242
 python3 -m venv venv
@@ -436,7 +416,7 @@ pip install -r requirements.txt
 uvicorn backend.main:app --reload --port 8001
 ```
 
-**3. Start Component 2 (Food Recommendation)**
+3. Start Component 2 (Food Recommendation)
 ```bash
 # In new terminal
 cd Component-2-Food-Recommendation-IT22551870
@@ -446,7 +426,7 @@ pip install -r requirements.txt
 uvicorn backend.main:app --reload --port 8002
 ```
 
-**4. Start Component 3 (Festival/Weather)**
+4. Start Component 3 (Festival/Weather)
 ```bash
 # In new terminal
 cd Component-3-Festival-Weather-IT22921130/backend
@@ -465,8 +445,7 @@ python -m app.scripts.seed_festivals
 # Start server
 uvicorn app.main:app --reload --port 8000
 ```
-
-**5. Verify All APIs**
+5. Verify All APIs
 ```bash
 # Component 1
 curl http://localhost:8001/health
@@ -478,32 +457,30 @@ curl http://localhost:8002/health
 curl http://localhost:8000/health
 ```
 
-**All APIs Running:**
+All APIs Running:
 - Component 1: http://localhost:8001/docs
 - Component 2: http://localhost:8002/docs
 - Component 3: http://localhost:8000/docs
-
----
-
+  
 ## Testing the System
 
 ### Individual Component Testing
 
-**Component 1:**
+Component 1:
 ```bash
 curl -X POST http://localhost:8001/api/predict \
   -H "Content-Type: application/json" \
   -d '{"location": "Sigiriya", "date": "2026-08-15", "time": "10:00"}'
 ```
 
-**Component 2:**
+Component 2:
 ```bash
 curl -X POST http://localhost:8002/api/recommend \
   -H "Content-Type: application/json" \
   -d '{"user_id": 1, "n_recommendations": 5}'
 ```
 
-**Component 3:**
+Component 3:
 ```bash
 curl "http://localhost:8000/api/weather/current?city=Colombo"
 curl http://localhost:8000/api/festivals
@@ -511,76 +488,74 @@ curl http://localhost:8000/api/festivals
 
 ### Integrated Testing
 
-**Test Smart Suggestions:**
+Test Smart Suggestions:
 ```bash
 curl "http://localhost:8000/api/suggestions?date=2026-08-15&location=Kandy"
 ```
 
 This combines weather, festivals, and holidays for comprehensive recommendations.
 
----
-
 ## Development Roadmap
 
-### Phase 1: Backend Development ✅ (Current)
+### Phase 1: Backend Development  (Current)
 
-**Completed:**
-- ✅ Component 1: ML model trained and API deployed
-- ✅ Component 2: Recommendation system and API deployed
-- ✅ Component 3: External API integration and database
-- ✅ Comprehensive documentation
-- ✅ API testing and validation
+Completed:
+-  Component 1: ML model trained and API deployed
+-  Component 2: Recommendation system and API deployed
+-  Component 3: External API integration and database
+- Comprehensive documentation
+-  API testing and validation
 
 ### Phase 2: Mobile App Development (Next)
 
-**Timeline:** 2-3 months
+Timeline: 2-3 months
 
-**Tasks:**
-1. **Setup Flutter Project**
+Tasks:
+1. Setup Flutter Project
    - Initialize Flutter app
    - Setup project structure
    - Configure dependencies
 
-2. **API Integration**
+2. API Integration
    - Create service classes for each component
    - Implement HTTP requests
    - Handle responses and errors
 
-3. **UI Development**
+3. UI Development
    - Design app screens
    - Implement navigation
    - Create reusable widgets
 
-4. **State Management**
+4. State Management
    - Implement Provider/Riverpod
    - Manage app state
    - Handle data caching
 
-5. **Testing**
+5. Testing
    - Unit tests
    - Widget tests
    - Integration tests
 
 ### Phase 3: Enhancement & Optimization (Future)
 
-**Timeline:** 3-4 months
+Timeline:3-4 months
 
-**Planned Features:**
+Planned Features:
 
-**Component 1 Enhancements:**
+Component 1 Enhancements:
 - Add more attractions (expand beyond Sigiriya)
 - Include daily granularity (not just monthly)
 - Real-time crowd updates (if data available)
 - Weather impact on crowds
 
-**Component 2 Enhancements:**
+Component 2 Enhancements:
 - Content-based filtering (ingredients, cuisine)
 - Hybrid recommendation system
 - User profile creation
 - Dietary restriction filters
 - Restaurant booking integration
 
-**Component 3 Enhancements:**
+Component 3 Enhancements:
 - More festivals (expand database to 50+)
 - Festival notifications
 - Weather alerts
@@ -597,46 +572,43 @@ This combines weather, festivals, and holidays for comprehensive recommendations
 
 ### Phase 4: Deployment & Launch (Future)
 
-**Timeline:** 1-2 months
+Timeline:1-2 months
 
-**Tasks:**
+Tasks:
 1. **Backend Deployment**
    - Deploy to cloud (AWS/Google Cloud/Azure)
    - Setup load balancers
    - Configure auto-scaling
    - Setup monitoring
 
-2. **Mobile App Release**
+2. Mobile App Release
    - App Store submission (iOS)
    - Play Store submission (Android)
    - Beta testing
    - User feedback collection
 
-3. **Marketing & Outreach**
+3. Marketing & Outreach
    - Tourism board partnerships
    - Hotel collaborations
    - Travel agency integration
    - Social media campaigns
-
----
-
 ## Use Cases
 
 ### For Tourists
 
-**1. Trip Planning**
+1. Trip Planning
 - Check crowd levels before visiting attractions
 - Plan visits during less crowded times
 - Discover local festivals
 - Get weather forecasts
 
-**2. Food Discovery**
+2. Food Discovery
 - Find restaurants matching preferences
 - Discover local cuisine
 - Get personalized recommendations
 - Avoid tourist traps
 
-**3. Cultural Exploration**
+3. Cultural Exploration
 - Learn about Sri Lankan festivals
 - Plan visits around cultural events
 - Understand significance
@@ -644,43 +616,41 @@ This combines weather, festivals, and holidays for comprehensive recommendations
 
 ### For Tourism Industry
 
-**1. Attraction Management**
+1. Attraction Management
 - Monitor visitor patterns
 - Optimize staffing
 - Manage capacity
 - Improve visitor experience
 
-**2. Restaurant Owners**
+2. Restaurant Owners
 - Understand customer preferences
 - Optimize menu offerings
 - Target marketing
 - Improve ratings
 
-**3. Tourism Board**
+3. Tourism Board
 - Promote festivals
 - Distribute tourist flow
 - Seasonal planning
 - Data-driven decisions
-
----
-
+  
 ## Research Contributions
 
 ### Academic Value
 
-**1. Machine Learning Applications**
+1. Machine Learning Applications
 - Tourism demand forecasting
 - Recommendation systems
 - Time series analysis
 - Collaborative filtering
 
-**2. Data Integration**
+2. Data Integration
 - Multi-source data fusion
 - External API integration
 - Real-time data processing
 - Caching strategies
 
-**3. System Design**
+3. System Design
 - Microservices architecture
 - RESTful API design
 - Mobile-backend integration
@@ -692,8 +662,6 @@ This combines weather, festivals, and holidays for comprehensive recommendations
 2. "Personalized Food Recommendations for Tourists"
 3. "Integrated Tourism Information System for Sri Lanka"
 
----
-
 ## Team
 
 | Component | Student ID | Name | Role |
@@ -701,8 +669,6 @@ This combines weather, festivals, and holidays for comprehensive recommendations
 | Component 1 | IT22255242 | Buddhima P.K.A.K | Crowd Analysis & ML |
 | Component 2 | IT22551870 | Kumari M.S.S | Food Recommendation & ML |
 | Component 3 | IT22921130 | Malsha R.J.H | Festival/Weather & Integration |
-
----
 
 ## Documentation
 
@@ -726,23 +692,13 @@ This combines weather, festivals, and holidays for comprehensive recommendations
 - [Component 1 Datasets](Component-1-Crowd-Analysis-IT22255242/DATASET_DOCUMENTATION.md)
 - [Component 2 Datasets](Component-2-Food-Recommendation-IT22551870/DATASET_DOCUMENTATION.md)
 
----
-
 ## License
 
 This project is developed as part of academic research at Sri Lanka Institute of Information Technology (SLIIT).
 
----
-
 ## Contact
 
 For questions or collaboration opportunities:
-
-**Project Supervisor:** [Supervisor Name]  
-**Institution:** Sri Lanka Institute of Information Technology (SLIIT)  
-**Email:** [contact email]
-
----
 
 ## Acknowledgments
 
@@ -753,12 +709,78 @@ For questions or collaboration opportunities:
 - Kaggle (for datasets)
 - Food.com community
 
----
-Component 4-Aspect-Based Sentiment Analysis for Sri Lanka Tourism Reviews
+
+## Component 4: Aspect-Based Sentiment Analysis for Sri Lanka Tourism Reviews
+
+### Component ID -IT22921130
+
+### Type
+
+Natural Language Processing (NLP) & Sentiment Analysis
+
+## Overview
+
+This component focuses on analyzing tourist reviews related to Sri Lanka to identify sentiments expressed towards specific aspects of tourism services. Unlike general sentiment analysis, Aspect-Based Sentiment Analysis (ABSA) breaks down reviews into individual aspects such as accommodation, food, transport, weather, price, and customer service, and determines whether opinions about each aspect are **positive, negative, or neutral.
 
 
-**Last Updated:** January 3, 2026  
-**Version:** 1.0.0  
-**Status:** Backend Complete, Mobile App In Development
+## Objectives
 
+* Extract key tourism-related aspects from customer reviews
+* Determine sentiment polarity for each identified aspect
+* Provide detailed feedback insights for tourism stakeholders
+* Support data-driven decision-making to improve tourism services
+
+## Key Aspects Analyzed
+
+* Accommodation
+* Food & Restaurants
+* Transportation
+* Tourist Attractions
+* Weather Conditions
+* Pricing & Value
+* Customer Service
+
+## Methodology
+
+1. Data Collection
+
+   * Collected tourism reviews from online platforms and datasets related to Sri Lanka tourism
+
+2. Text Preprocessing
+
+   * Tokenization
+   * Stop-word removal
+   * Lowercasing
+   * Lemmatization
+
+3. Aspect Extraction
+
+   * Used predefined tourism-related aspect keywords
+   * Applied NLP techniques to detect aspect terms in reviews
+
+4. Sentiment Classification
+
+   * Applied machine learning / lexicon-based sentiment analysis
+   * Classified sentiment as Positive, Negative, or Neutral per aspect
+
+## Technologies Used
+
+* Python
+* Natural Language Toolkit (NLTK) / spaCy
+* Scikit-learn
+* Pandas & NumPy
+
+## Output
+
+* Aspect-wise sentiment scores
+* Sentiment distribution visualizations
+* Summary insights for each tourism aspect
+
+## Benefits
+
+* Helps tourism authorities identify problem areas
+* Improves service quality based on customer feedback
+* Enhances tourist satisfaction and experience
+* Provides detailed sentiment insights beyond overall ratings
+  
 # Research_332
