@@ -78,8 +78,6 @@ API Endpoints:
 - `POST /api/best-time` - Get optimal visit times
 - `GET /api/metrics` - Model performance
 
-Documentation: [Component-1-Crowd-Analysis-IT22255242/README.md](Component-1-Crowd-Analysis-IT22255242/README.md)
-
 ### Component 2: Food Recommendation (IT22551870)
 
 Developer: Kumari M.S.S  
@@ -111,8 +109,6 @@ Data Sources:
 - `POST /api/predict` - Predict rating
 - `GET /api/popular` - Get popular recipes
 - `GET /api/metrics` - Model performance
-
-Documentation: [Component-2-Food-Recommendation-IT22551870/README.md](Component-2-Food-Recommendation-IT22551870/README.md)
 
 ### Component 3: Festival & Weather (IT22921130)
 
@@ -146,7 +142,6 @@ Database:
 - `GET /api/holidays` - Public holidays
 - `GET /api/festivals` - Festival calendar
 - `GET /api/suggestions` - Smart recommendations
-Documentation: [Component-3-Festival-Weather-IT22921130/README.md](Component-3-Festival-Weather-IT22921130/README.md)
 
 ## How Components Work Together
 
@@ -669,28 +664,6 @@ Tasks:
 | Component 1 | IT22255242 | Buddhima P.K.A.K | Crowd Analysis & ML |
 | Component 2 | IT22551870 | Kumari M.S.S | Food Recommendation & ML |
 | Component 3 | IT22921130 | Malsha R.J.H | Festival/Weather & Integration |
-
-## Documentation
-
-### Component Documentation
-- [Component 1 README](Component-1-Crowd-Analysis-IT22255242/README.md)
-- [Component 2 README](Component-2-Food-Recommendation-IT22551870/README.md)
-- [Component 3 README](Component-3-Festival-Weather-IT22921130/README.md)
--  [Component 4 README](Aspect-Based Sentiment Analysis for Sri Lanka Tourism Reviews-IT22033246/README.md)
-
-### API Documentation
-- [Component 1 API](Component-1-Crowd-Analysis-IT22255242/API_DOCUMENTATION.md)
-- [Component 2 API](Component-2-Food-Recommendation-IT22551870/API_DOCUMENTATION.md)
-- [Component 3 API](Component-3-Festival-Weather-IT22921130/API_DOCUMENTATION.md)
-
-### Technical Documentation
-- [Component 1 ML Methodology](Component-1-Crowd-Analysis-IT22255242/ML_METHODOLOGY.md)
-- [Component 2 ML Methodology](Component-2-Food-Recommendation-IT22551870/ML_METHODOLOGY.md)
-- [Component 3 Implementation](Component-3-Festival-Weather-IT22921130/IMPLEMENTATION_METHODOLOGY.md)
-
-### Dataset Documentation
-- [Component 1 Datasets](Component-1-Crowd-Analysis-IT22255242/DATASET_DOCUMENTATION.md)
-- [Component 2 Datasets](Component-2-Food-Recommendation-IT22551870/DATASET_DOCUMENTATION.md)
 
 ## License
 
