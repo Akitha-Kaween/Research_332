@@ -13,6 +13,9 @@ To create a comprehensive, data-driven tourism platform that helps visitors opti
 - Personalized food recommendations
 - Festival and weather information
 - Smart itinerary suggestions
+- Aspect-Based Sentiment Analysis for Sri Lanka Tourism Reviews
+
+
 
 ---
 
@@ -707,6 +710,7 @@ This combines weather, festivals, and holidays for comprehensive recommendations
 - [Component 1 README](Component-1-Crowd-Analysis-IT22255242/README.md)
 - [Component 2 README](Component-2-Food-Recommendation-IT22551870/README.md)
 - [Component 3 README](Component-3-Festival-Weather-IT22921130/README.md)
+-  [Component 4 README](Aspect-Based Sentiment Analysis for Sri Lanka Tourism Reviews-IT22033246/README.md)
 
 ### API Documentation
 - [Component 1 API](Component-1-Crowd-Analysis-IT22255242/API_DOCUMENTATION.md)
@@ -750,6 +754,8 @@ For questions or collaboration opportunities:
 - Food.com community
 
 ---
+Component 4-Aspect-Based Sentiment Analysis for Sri Lanka Tourism Reviews
+
 
 **Last Updated:** January 3, 2026  
 **Version:** 1.0.0  
