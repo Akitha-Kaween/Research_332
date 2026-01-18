@@ -685,7 +685,6 @@ For questions or collaboration opportunities:
 
 ## Component 4: Aspect-Based Sentiment Analysis for Sri Lanka Tourism Reviews
 
-### Component ID -IT22921130
 
 ### Type
 
