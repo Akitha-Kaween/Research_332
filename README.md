@@ -19,7 +19,7 @@ To create a comprehensive, data-driven tourism platform that helps visitors opti
 
 ### Three-Component Architecture
 
-```
+
 ┌─────────────────────────────────────────────────────────────────┐
 │                    SMART TOURISM SYSTEM                         │
 └─────────────────────────────────────────────────────────────────┘
@@ -49,7 +49,7 @@ To create a comprehensive, data-driven tourism platform that helps visitors opti
 └─────────────────┘ └─────────────────┘ └─────────────────┘
 ```
 
----
+
 
 ## Components
 
@@ -110,7 +110,7 @@ Data Sources:
 - `GET /api/popular` - Get popular recipes
 - `GET /api/metrics` - Model performance
 
-### Component 3: Festival & Weather (IT22921130)
+### Component 3: Festival & Weather AI Tour Planner (IT22921130)
 
 Developer: Malsha R.J.H  
 Technology: API Integration & Database Management  
@@ -142,6 +142,39 @@ Database:
 - `GET /api/holidays` - Public holidays
 - `GET /api/festivals` - Festival calendar
 - `GET /api/suggestions` - Smart recommendations
+
+# AI Tour Planner (IT22921130)
+
+## Overview
+This research module implements an **Intelligent Multi-Objective Tour Planner** that goes beyond simple distance minimization. It uses a Genetic Algorithm (GA) to find the optimal route for a tourist visiting multiple attractions in Kandy, considering:
+1.  Real-world Directions:Using OpenStreetMap data via `osmnx`.
+2.  Weather Constraints: Avoiding outdoor locations during high rain probability hours.
+3.  Crowd Avoidance: Minimizing visits to congested areas during peak times.
+
+### Dataset
+*   File: `sri_lanka_chat_data.json`
+*   Size: ~12,000 records
+*   Content: Detailed Q&A about Hotels, Landmarks, Food, and Itineraries for 10 districts.
+
+## Methodology
+
+### 1. Graph Construction
+We fetch the drivable street network of **Kandy, Sri Lanka** using `osmnx`. This provides a realistic graph $G=(V, E)$ where edges represent actual roads and weights represent lengths.
+
+### 2. Distance Matrix
+We calculate the shortest path distance between all pairs of 6 key attractions (Temple of the Tooth, Kandy Lake, Peradeniya Gardens, etc.) using Dijkstra's algorithm on the road network.
+
+### 3. Genetic Algorithm
+We evolve a population of routes using:
+*   Representation: Permutation of location indices.
+*   Fitness Function: $F = \frac{1}{TotalDistance + WeatherPenalty + CrowdPenalty}$
+*   Selection: Tournament Selection.
+*   Crossover: Ordered Crossover (OX1).
+*   Mutation: Swap Mutation.
+
+## Results
+The algorithm produces an optimized sequence of visits (e.g., "Temple -> Lake -> Museum -> Gardens"). The final output is an interactive map (`minimal_tour_map.html`) displaying the route path in green and markers for each stop.
+
 
 ## How Components Work Together
 
@@ -421,7 +454,7 @@ pip install -r requirements.txt
 uvicorn backend.main:app --reload --port 8002
 ```
 
-4. Start Component 3 (Festival/Weather)
+4. Start Component 3 (Festival/Weather AI Tour Planner)
 ```bash
 # In new terminal
 cd Component-3-Festival-Weather-IT22921130/backend
@@ -439,6 +472,30 @@ python -m app.scripts.seed_festivals
 
 # Start server
 uvicorn app.main:app --reload --port 8000
+
+
+## How to Run (AI Tour Planner)
+
+### 1. Setup Environment
+This research requires specific geospatial libraries. We recommend using the provided virtual environment.
+
+```bash
+# Activate the research environment
+source notebooks/venv/bin/activate  # macOS/Linux
+# notebooks\venv\Scripts\activate   # Windows
+
+# Install dependencies (if not already installed)
+pip install osmnx networkx folium pandas matplotlib scikit-learn
+```
+
+### 2. Run the Research Script
+You can run the Python script directly to generate the map:
+
+```bash
+python notebooks/research_tour_planner.py
+```
+
+
 ```
 5. Verify All APIs
 ```bash
@@ -663,7 +720,8 @@ Tasks:
 |-----------|-----------|------|------|
 | Component 1 | IT22255242 | Buddhima P.K.A.K | Crowd Analysis & ML |
 | Component 2 | IT22551870 | Kumari M.S.S | Food Recommendation & ML |
-| Component 3 | IT22921130 | Malsha R.J.H | Festival/Weather & Integration |
+| Component 3 | IT22921130 | Malsha R.J.H | Festival/Weather & Integration Ai AI Tour Planner|
+| Component4 | IT22033246 | Kavidu | Tourism reviews |
 
 ## License
 
@@ -683,76 +741,240 @@ For questions or collaboration opportunities:
 - Food.com community
 
 
-## Component 4: Aspect-Based Sentiment Analysis for Sri Lanka Tourism Reviews
+## Component 4: Aspect-Based Sentiment Analysis for Sri Lanka Tourism Reviews (IT22033246)
+
+Developer: Kavindu  
+Technology: Machine Learning
+
+# Sri Lanka Tourism Sentiment Analysis System
+
+**Aspect-Based Sentiment Analysis with Machine Learning for Sri Lanka Tourism**
+
+A comprehensive machine learning system that analyzes 16,000+ tourism reviews to provide aspect-level sentiment insights and smart destination recommendations.
+
+---
+
+## Research Features
+
+### Machine Learning Components
+- **Overall Sentiment Classification** - Linear SVM with 81.58% accuracy
+- **Aspect-Level ML Classification** - Separate models for 7 tourism aspects (74.11% avg F1)
+- **Hybrid Analysis** - Combines ML + Lexicon approaches for robust predictions
+
+### Aspect-Based Sentiment Analysis
+- **7 Tourism Aspects**: Scenery, Safety, Facilities, Value, Accessibility, Experience, Service
+- **200+ Domain Keywords**: Tourism-specific vocabulary
+- **76 Destinations**: Comprehensive insights for Sri Lanka locations
+
+### Smart Features
+- **Preference-Based Recommendations** - Match destinations to user preferences
+- **Location Comparison** - Compare multiple destinations across all aspects
+- **Real-time Analysis** - Analyze any review text instantly
+
+---
+
+##  ML Results Summary
+
+### Overall Sentiment Classification
+| Model | Accuracy | F1 Score |
+|-------|----------|----------|
+| Linear SVM | 81.58% | 81.08% |
+| Logistic Regression | 80.92% | 80.45% |
+| Random Forest | 78.34% | 77.89% |
+
+### Aspect-Level ML Classification
+| Aspect | Best Model | F1 Score | Samples |
+|--------|------------|----------|---------|
+| Experience & Activities | Linear SVM | 77.67% | 11,076 |
+| Scenery & Views | Linear SVM | 76.80% | 9,053 |
+| Facilities | Linear SVM | 74.12% | 5,413 |
+| Accessibility | Linear SVM | 73.59% | 8,986 |
+| Value for Money | Linear SVM | 72.95% | 7,220 |
+| Service & Staff | Logistic Regression | 72.47% | 2,093 |
+| Safety & Crowds | Naive Bayes | 71.14% | 3,697 |
+
+**Total ML Training Samples: 47,538**
+
+---
+
+## Prerequisites
+
+- Python 3.9 or higher
+- pip (Python package manager)
+- 4GB RAM minimum
+
+---
+
+##  Quick Start Guide
+
+### Step 1: Create Virtual Environment
+```bash
+python -m venv venv
+source venv/bin/activate  # macOS/Linux
+# or: venv\Scripts\activate  # Windows
+```
+
+### Step 2: Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### Step 3: Download NLTK Data
+```bash
+python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords'); nltk.download('wordnet'); nltk.download('punkt_tab')"
+```
+
+### Step 4: Run the Application
+```bash
+python app.py
+```
+
+### Step 5: Access the Application
+- **Sentiment Analysis Dashboard**: http://127.0.0.1:5001/absa
+- **Recommender System**: http://127.0.0.1:5001/
+
+> ⚠️ **Note**: First startup takes ~2-3 minutes to train ML models. Wait for "✅ ABSA service ready!" message.
+
+---
+
+## 📊 Running Analysis Scripts
+
+### Run Complete ML Training
+```bash
+python scripts/run_aspect_ml_training.py
+```
+
+### Export Research Results
+```bash
+python scripts/export_research_results.py
+```
+
+### Run Sentiment Analysis Evaluation
+```bash
+python scripts/run_sentiment_analysis.py
+```
+
+---
+
+## 🔌 API Endpoints
+
+### Core Endpoints
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/absa/locations` | GET | Get all locations with ratings |
+| `/api/absa/locations/<name>` | GET | Get detailed insight for a location |
+| `/api/absa/locations/<name>/aspects` | GET | Get aspect scores for a location |
+| `/api/absa/recommend` | POST | Get smart recommendations |
+| `/api/absa/compare` | POST | Compare multiple locations |
+
+### ML Endpoints (NEW)
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/absa/analyze` | POST | Analyze review (lexicon-based) |
+| `/api/absa/analyze/ml` | POST | Analyze review (ML hybrid) |
+| `/api/absa/ml/evaluation` | GET | Get ML model evaluation metrics |
+| `/api/absa/export/research` | GET | Export all research data |
+
+### Example API Usage
+```bash
+# ML-based review analysis
+curl -X POST http://127.0.0.1:5001/api/absa/analyze/ml \
+  -H "Content-Type: application/json" \
+  -d '{"text": "Beautiful scenery but very crowded and expensive."}'
+
+# Get ML evaluation results
+curl http://127.0.0.1:5001/api/absa/ml/evaluation
+
+# Export research data
+curl http://127.0.0.1:5001/api/absa/export/research
+```
+
+---
+
+## 📁 Project Structure
+
+```
+tourism-recommender-system/
+├── app.py                          # Main Flask application
+├── requirements.txt                # Python dependencies
+├── dataset/
+│   └── Reviews.csv                 # Tourism reviews (16,156 reviews)
+├── src/
+│   ├── aspect_sentiment.py         # ABSA core implementation
+│   ├── aspect_ml_service.py        # ML service (NEW)
+│   ├── aspect_ml_classifier.py     # ML training pipeline
+│   ├── absa_api.py                 # API service layer
+│   └── sentiment_analysis.py       # Overall sentiment ML
+├── scripts/
+│   ├── run_aspect_ml_training.py   # Train ML models
+│   ├── export_research_results.py  # Export for paper (NEW)
+│   └── run_sentiment_analysis.py   # Evaluate sentiment
+├── models/
+│   └── aspect_ml/                  # Trained ML models (NEW)
+├── research_output/                # Exported research data (NEW)
+├── templates/
+│   └── absa.html                   # Enhanced frontend with charts
+└── data/
+    ├── aspect_statistics.csv
+    └── location_insights.csv
+```
+
+---
+
+## 📈 Research Output Files
+
+After running `python scripts/export_research_results.py`:
+
+```
+research_output/
+├── location_insights.csv       # 76 locations with aspect scores
+├── aspect_statistics.csv       # 7 aspects with sentiment stats
+├── ml_evaluation_results.csv   # ML metrics per aspect
+├── dataset_statistics.json     # Overall dataset stats
+└── complete_research_data.json # All data for paper
+```
+
+---
+
+## 🔧 Configuration
+
+Edit `.env` file:
+```env
+FLASK_DEBUG=0           # Keep 0 for production
+API_PORT=5001           # Change port if needed
+```
+
+---
+
+## 📚 Research Documentation
+
+- `ABSA_RESEARCH.md` - Detailed ABSA methodology
+- `ASPECT_ML_RESULTS.md` - ML training results
+- `SENTIMENT_ANALYSIS_RESEARCH.md` - Overall sentiment methodology
+- `SENTIMENT_ANALYSIS_RESULTS.md` - Evaluation results
+
+---
+
+## 🐛 Troubleshooting
+
+### Port Already in Use
+```bash
+lsof -ti:5001 | xargs kill -9
+```
+
+### NLTK Data Not Found
+```bash
+python -c "import nltk; nltk.download('all')"
+```
+
+### Slow First Load
+First startup trains ML models (~2-3 minutes). Subsequent loads are instant as models are cached.
+
+---
+
+## 📄 License
+
+This project is for academic research purposes.
 
 
-### Type
-
-Natural Language Processing (NLP) & Sentiment Analysis
-
-## Overview
-
-This component focuses on analyzing tourist reviews related to Sri Lanka to identify sentiments expressed towards specific aspects of tourism services. Unlike general sentiment analysis, Aspect-Based Sentiment Analysis (ABSA) breaks down reviews into individual aspects such as accommodation, food, transport, weather, price, and customer service, and determines whether opinions about each aspect are **positive, negative, or neutral.
-
-
-## Objectives
-
-* Extract key tourism-related aspects from customer reviews
-* Determine sentiment polarity for each identified aspect
-* Provide detailed feedback insights for tourism stakeholders
-* Support data-driven decision-making to improve tourism services
-
-## Key Aspects Analyzed
-
-* Accommodation
-* Food & Restaurants
-* Transportation
-* Tourist Attractions
-* Weather Conditions
-* Pricing & Value
-* Customer Service
-
-## Methodology
-
-1. Data Collection
-
-   * Collected tourism reviews from online platforms and datasets related to Sri Lanka tourism
-
-2. Text Preprocessing
-
-   * Tokenization
-   * Stop-word removal
-   * Lowercasing
-   * Lemmatization
-
-3. Aspect Extraction
-
-   * Used predefined tourism-related aspect keywords
-   * Applied NLP techniques to detect aspect terms in reviews
-
-4. Sentiment Classification
-
-   * Applied machine learning / lexicon-based sentiment analysis
-   * Classified sentiment as Positive, Negative, or Neutral per aspect
-
-## Technologies Used
-
-* Python
-* Natural Language Toolkit (NLTK) / spaCy
-* Scikit-learn
-* Pandas & NumPy
-
-## Output
-
-* Aspect-wise sentiment scores
-* Sentiment distribution visualizations
-* Summary insights for each tourism aspect
-
-## Benefits
-
-* Helps tourism authorities identify problem areas
-* Improves service quality based on customer feedback
-* Enhances tourist satisfaction and experience
-* Provides detailed sentiment insights beyond overall ratings
-  
 # Research_332
